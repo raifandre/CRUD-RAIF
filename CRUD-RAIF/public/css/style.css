@@ -1,0 +1,17 @@
+#logo{
+    width: 300px;
+    margin-left: 20%;
+}
+
+.destaque{
+    margin-top: 50px;
+    margin-left: 70px;
+}
+
+.menu-vertical{
+    width: 160px;
+}
+
+#obrigatorio{
+	color: red; 
+}
