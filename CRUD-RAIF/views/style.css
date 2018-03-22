@@ -1,0 +1,17 @@
+#logo{
+    width: 250px;
+    margin-left: 20%;
+}
+
+.destaque{
+    margin-top: 50px;
+    margin-left: 14%;
+}
+
+#tabelaMenu{
+    text-decoration-color: red;
+}
+
+.menu-vertical{
+    width: 160px;
+}
