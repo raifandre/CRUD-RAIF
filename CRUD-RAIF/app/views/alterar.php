@@ -1,6 +1,6 @@
 <?php
     include_once("../controllers/Pessoa_Controller.php");
-    $id = 8;
+    $id = $_GET['id'];
     $pessoa = new Pessoa_Controller;
     $buscar = $pessoa->buscarId($id);
 ?>
@@ -93,7 +93,7 @@
                             </div>                      
                             <div class="col-md-12">
                                 <div class="form-group text-right">
-                                    <a href="visualizar.php"><button type="button" class="btn btn-danger">Cancelar</button></a>
+                                    <a href="visualizar.php?id=<?=$buscar->id?>"><button type="button" class="btn btn-danger">Cancelar</button></a>
                                     <a href="alterar.php"><button type="submit" onclick="alterar();" class="btn btn-success">Salvar</button></a>
                                 </div>
                             </div>

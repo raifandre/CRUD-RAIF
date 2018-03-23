@@ -75,11 +75,17 @@ class Pessoa_Controller extends Controller{
 
     }
 
-    public function deletarTel($idTelefone) {
+    public function deletar($id) {
 
-        $this->pessoa->id($this->input->get('idUsuario'));
-
-        $this->pessoa->deletarTel($idTelefone);
+        try {
+          $resultado = $this->pessoa->deletar($id);
+        } catch(Exception $e) {
+          echo $e->getMessage();
+        }
+        
+        if($resultado) {
+            header('Location: ../views/index.php'); 
+        }
 
     }
 

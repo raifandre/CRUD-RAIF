@@ -40,6 +40,7 @@
             <!-- CONTEUDO -->
             <div class="container">
                 <div class="row">
+                    <input type="hidden" name="idPessoa" id="idPessoa" value=" <? echo $id; ?>">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -50,34 +51,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
                             <?php for ($i=0; $i < $quant; $i++) { ?>
                                 <tr>
                                     <th scope="row" class="text-center"><?php echo $listar[$i]->id?></th>
-                                    <td class="text-center"><a href="visualizar.php?<?php echo $listar[$i]->id?>"><?php echo $listar[$i]->nome?></a></td>
+                                    <td class="text-center"><a href="visualizar.php?id=<?php echo $listar[$i]->id?>"><?php echo $listar[$i]->nome?></a></td>
                                     <td class="text-center"><?php echo $listar[$i]->email?></td>
-                                    <td class="text-center"><a href="alterar.php?<?php echo $listar[$i]->id?>"><button class="btn btn-primary">Alterar</button></a> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Excluir</button></td>
+                                    <td class="text-center"><a href="alterar.php?id=<?php echo $listar[$i]->id?>"><button class="btn btn-primary">Alterar</button></a> <button type="button" class="btn btn-danger" onclick="incrementId(<?php echo $listar[$i]->id?>);" data-toggle="modal" data-target="#deleteModal">Excluir</button></td>
                                 </tr>
                             <?php } ?>
-                            <!--
-                            <tr>
-                                <th scope="row" class="text-center">1</th>
-                                <td class="text-center"><a href="visualizar.php?<?=$id?>">André</a></td>
-                                <td class="text-center">exemplo@email.com</td>
-                                <td class="text-center"><a href="alterar.php?<?=$id?>"><button class="btn btn-primary">Alterar</button></a> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Excluir</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-center">2</th>
-                                <td class="text-center"><a href="visualizar.php">Júlio</a></td>
-                                <td class="text-center">exemplo@email.com</td>
-                                <td class="text-center"><a href="alterar.php"><button class="btn btn-primary">Alterar</button></a> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Excluir</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-center">3</th>
-                                <td class="text-center"><a href="visualizar.php">Ana Heloísa</a></td>
-                                <td class="text-center">exemplo@email.com</td>
-                                <td class="form-group text-center"><a href="alterar.php"><button type="button" class="btn btn-primary">Alterar</button></a> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Excluir</button></td>
-                            </tr>-->
                         </tbody>
                     </table>
                 </div>
@@ -90,28 +71,37 @@
             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <script src="../../public/js/jquery.js"></script>
+            <script src="../../public/js/jquery.mask.js"></script>
 
             <!-- Modal -->
-            <div id="myModal" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 class="modal-title">Excluir</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
-                  <div class="modal-body">
-                    <p>Deseja realmente excluir esses dados ?</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="">Não</button>
-                    <button type="button" class="btn btn-success" data-dismiss="">Sim</button>
-                  </div>
+            <div id="deleteModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Excluir</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Deseja realmente excluir esses dados ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+                            <a id="deletar"><button type="submit" class="btn btn-success" id="deleteSim" data-dismiss="">Sim</button></a>
+                        </div>
+                    </div>
                 </div>
-
-              </div>
             </div>
+            <script>
+                
+                function incrementId(id) {
+                    $("#deleteSim").attr('onclick', 'deletar('+id+');');
+                    $("#deletar").attr('href', '../actions/deletar.php?id='+id);
+
+                }
+
+            </script>
         </body>
     </head>
 </html>

@@ -1,6 +1,6 @@
 <?php
     include_once("../controllers/Pessoa_Controller.php");
-    $id = 8;
+    $id = $_GET['id'];
     $pessoa = new Pessoa_Controller;
     $buscar = $pessoa->buscarId($id);
 ?>
@@ -94,6 +94,7 @@
                             </div>                      
                             <div class="col-md-12">
                                 <div class="form-group text-right">
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" onclick="incrementId(<?= $buscar->id?>);">Excluir</button>
                                     <a href="index.php"><button type="button" class="btn btn-primary">Voltar</button></a>
                                     <a href="alterar.php?id=<?=$id?>"><button type="button" class="btn btn-primary">Alterar</button></a>
                                 </div>
@@ -110,6 +111,34 @@
             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <!-- Modal -->
+            <div id="deleteModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Excluir</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Deseja realmente excluir esses dados ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+                            <a id="deletar"><button type="submit" class="btn btn-success" id="deleteSim" data-dismiss="">Sim</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                
+                function incrementId(id) {
+                    $("#deleteSim").attr('onclick', 'deletar('+id+');');
+                    $("#deletar").attr('href', '../actions/deletar.php?id='+id);
+
+                }
+
+            </script>
         </body>
     </head>
 </html>

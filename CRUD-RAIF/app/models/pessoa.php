@@ -60,6 +60,15 @@ include_once(__DIR__."../../models/Model.php");
 
     }
 
+    public function deletar($id) {
+
+        $sql = "DELETE FROM cadastro WHERE id = '$id'";
+        $stmt = $this->conn->prepare($sql);
+        $resultado = $stmt->execute();
+        return $resultado;
+
+    }
+
     public function buscarId($id) {
         $sql = "SELECT * FROM cadastro WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
