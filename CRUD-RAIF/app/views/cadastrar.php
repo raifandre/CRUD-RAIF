@@ -91,7 +91,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group text-right">
+                                <div class="form-group text-right">                                
+                                    <a href="index.php"><button type="button" class="btn btn-danger">Cancelar</button></a>
                                     <button type="submit" onclick="cadastrar();" class="btn btn-success">Salvar</button>
                                 </div>
                             </div>
