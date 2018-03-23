@@ -1,3 +1,9 @@
+<?php
+    include_once("../controllers/Pessoa_Controller.php");
+    $id = 8;
+    $pessoa = new Pessoa_Controller;
+    $buscar = $pessoa->buscarId($id);
+?>
 <!DOCTYPE HTML>
 <html lang="pt-br">
     <head>
@@ -34,59 +40,62 @@
             <!-- CONTEUDO -->
             <div class="container">
                 <form>
+
+                    <input type="hidden" id="id" name="id" value="<?= $id?>">
                     <div class="row">
                         <div class="col-md-12 row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <b><label>Nome <i id="obrigatorio">*</i>:</label></b>
-                                    <input class="form-control" type="text" id="nome" name="nome" placeholder="Nome" required disabled>
+                                    <input class="form-control" type="text" id="nome" name="nome" placeholder="Nome" value="<?= $buscar->nome?>" required disabled>
                                 </div>
                                 <div class="form-group">
                                     <b><label>Sobrenome <i id="obrigatorio">*</i>:</label></b>
-                                    <input class="form-control" type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" required disabled>
+                                    <input class="form-control" type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" value="<?= $buscar->sobrenome?>" required disabled>
                                 </div>
                                 <div class="form-group">
                                     <b><label>Email <i id="obrigatorio">*</i>:</label></b>
-                                    <input class="form-control" type="email" id="email" name="email" placeholder="exemplo@email.com" required disabled>
+                                    <input class="form-control" type="email" id="email" name="email" placeholder="exemplo@email.com" value="<?= $buscar->email?>" required disabled>
                                 </div>
                                 <div class="form-group">
                                     <b><label>RG <i id="obrigatorio">*</i>:</label></b>
-                                    <input class="form-control" type="number" id="rg" name="rg" placeholder="RG" required disabled>
+                                    <input class="form-control" type="number" id="rg" name="rg" placeholder="RG" value="<?= $buscar->rg?>" required disabled>
                                 </div>
                                 <div class="form-group">
                                     <b><label>CPF <i id="obrigatorio">*</i>:</label></b>
-                                    <input class="form-control" type="text" id="cpf" name="cpf" placeholder="999.999.999-99" required disabled>
+                                    <input class="form-control" type="text" id="cpf" name="cpf" placeholder="999.999.999-99" value="<?= $buscar->cpf?>" required disabled>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <b><label>CEP <i id="obrigatorio">*</i>:</label></b>
-                                    <input class="form-control" type="text" id="cep" name="cpf" placeholder="CEP" required disabled>
+                                    <input class="form-control" type="text" id="cep" name="cpf" placeholder="CEP" value="<?= $buscar->cep?>" required disabled>
                                 </div>
                                 <div class="form-group">
                                     <b><label>Estado <i id="obrigatorio">*</i>:</label></b>
-                                    <input class="form-control" type="text" id="estado" name="estado" placeholder="Estado" required disabled>
+                                    <input class="form-control" type="text" id="estado" name="estado" placeholder="Estado" value="<?= $buscar->estado?>" required disabled>
                                 </div>
                                 <div class="form-group">
                                     <b><label>Cidade <i id="obrigatorio">*</i>:</label></b>
-                                    <input class="form-control" type="text" id="cidade" name="cidade" placeholder="Cidade" required disabled>
+                                    <input class="form-control" type="text" id="cidade" name="cidade" placeholder="Cidade" value="<?= $buscar->cidade?>" required disabled>
                                 </div>
                                 <div class="form-group">
                                     <b><label>Rua <i id="obrigatorio">*</i>:</label></b>
-                                    <input class="form-control" type="text" id="rua" name="rua" placeholder="Rua" required disabled>
+                                    <input class="form-control" type="text" id="rua" name="rua" placeholder="Rua" value="<?= $buscar->rua?>" required disabled>
                                 </div>
                                 <div class="form-group">
                                     <b><label>Número <i id="obrigatorio">*</i>:</label></b>
-                                    <input class="form-control" type="number" id="numero" name="numero" placeholder="Número" required disabled>
+                                    <input class="form-control" type="number" id="numero" name="numero" placeholder="Número" value="<?= $buscar->numero?>" required disabled>
                                 </div>
                                 <div class="form-group">
                                     <b><label>Complemento :</label></b>
-                                    <input class="form-control" type="text" id="complemento" name="complemento" placeholder="Complemento" disabled>
+                                    <input class="form-control" type="text" id="complemento" name="complemento" placeholder="Complemento" value="<?= $buscar->complemento?>" disabled>
                                 </div><br>
                             </div>                      
                             <div class="col-md-12">
                                 <div class="form-group text-right">
                                     <a href="index.php"><button type="button" class="btn btn-primary">Voltar</button></a>
+                                    <a href="alterar.php?id=<?=$id?>"><button type="button" class="btn btn-primary">Alterar</button></a>
                                 </div>
                             </div>
                         </div><br>

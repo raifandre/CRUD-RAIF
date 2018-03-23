@@ -25,46 +25,53 @@ class Pessoa_Controller extends Controller{
                    ->numero($this->input->get('numero'))
                    ->complemento($this->input->get('complemento'));
 
+
       $resultado = $this->pessoa->cadastrar();
 
       if($resultado) {
         echo ('Cadastro realizado com sucesso.');
         return true;
       } else {
-          echo ('Ocorreu um erro durante o cadastro, tente novamente mais tarde.');
-          return false;
+        echo ('Ocorreu um erro durante o cadastro, tente novamente mais tarde.');
+        return false;
       }
     }
 
     public function alterar() {
 
-        $this->pessoa->id($this->input->get('id'))
-                               ->nome($this->input->get('nome'))
-                               ->instituicao($this->input->get('instituicao'))
-                               ->email($this->input->get('email'))
-                               ->numero($this->input->get('numero'))
-                               ->tipo($this->input->get('tipo'));
+        $this->pessoa->id($this->input->get('alterarPessoa'))
+                     ->nome($this->input->get('nome'))
+                     ->sobrenome($this->input->get('sobrenome'))
+                     ->email($this->input->get('email'))
+                     ->rg($this->input->get('rg'))
+                     ->cpf($this->input->get('cpf'))
+                     ->cep($this->input->get('cep'))
+                     ->estado($this->input->get('estado'))
+                     ->cidade($this->input->get('cidade'))
+                     ->rua($this->input->get('rua'))
+                     ->numero($this->input->get('numero'))
+                     ->complemento($this->input->get('complemento'));
 
-        $testeEmail = $this->pessoa->testEmail();
+        $resultado = $this->pessoa->alterar();
 
-            if($testeEmail) {
-               echo "Email em uso.";
-            } else {
-                $resultado = $this->pessoa->alterar();
-
-                if($resultado) {
-
-                    echo "Usuario alterado com sucesso.";
-                    echo "<script>window.setTimeout(\"document.location = './'\", 1400);</script>";
-                } else {
-                    echo msg005();
-                }
-            }
+        if($resultado) {
+          echo ('Dados alterado com sucesso.');
+          return true;
+        } else {
+          echo ('Ocorreu um erro, tente novamente mais tarde.');
+          return false;
+        }
     }
 
-    public function listarId($id) {
+    public function buscarId($id) {
 
-        return $this->pessoa->listarId($id);
+        return $this->pessoa->buscarId($id);
+
+    }
+
+    public function listar() {
+
+        return $this->pessoa->listar();
 
     }
 

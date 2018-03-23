@@ -1,3 +1,9 @@
+<?php
+    include_once("../controllers/Pessoa_Controller.php");
+    $pessoa = new Pessoa_Controller;
+    $listar = $pessoa->listar();
+    $quant = count($listar);
+?>
 <!DOCTYPE HTML>
 <html lang="pt-br">
     <head>
@@ -44,11 +50,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
+                            <?php for ($i=0; $i < $quant; $i++) { ?>
+                                <tr>
+                                    <th scope="row" class="text-center"><?php echo $listar[$i]->id?></th>
+                                    <td class="text-center"><a href="visualizar.php?<?php echo $listar[$i]->id?>"><?php echo $listar[$i]->nome?></a></td>
+                                    <td class="text-center"><?php echo $listar[$i]->email?></td>
+                                    <td class="text-center"><a href="alterar.php?<?php echo $listar[$i]->id?>"><button class="btn btn-primary">Alterar</button></a> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Excluir</button></td>
+                                </tr>
+                            <?php } ?>
+                            <!--
                             <tr>
                                 <th scope="row" class="text-center">1</th>
-                                <td class="text-center"><a href="visualizar.php">André</a></td>
+                                <td class="text-center"><a href="visualizar.php?<?=$id?>">André</a></td>
                                 <td class="text-center">exemplo@email.com</td>
-                                <td class="text-center"><a href="alterar.php"><button class="btn btn-primary">Alterar</button></a> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Excluir</button></td>
+                                <td class="text-center"><a href="alterar.php?<?=$id?>"><button class="btn btn-primary">Alterar</button></a> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Excluir</button></td>
                             </tr>
                             <tr>
                                 <th scope="row" class="text-center">2</th>
@@ -61,7 +77,7 @@
                                 <td class="text-center"><a href="visualizar.php">Ana Heloísa</a></td>
                                 <td class="text-center">exemplo@email.com</td>
                                 <td class="form-group text-center"><a href="alterar.php"><button type="button" class="btn btn-primary">Alterar</button></a> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Excluir</button></td>
-                            </tr>
+                            </tr>-->
                         </tbody>
                     </table>
                 </div>
